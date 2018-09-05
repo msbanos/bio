@@ -5,10 +5,14 @@ ROOT_DIR = banos/ms/core
 INSTALL_DIR = bin/$(VERSION)
 TEST_DIR = tests
 
-OBJECTS = 
+OBJECTS = $(ROOT_DIR)/io/FileReader.o
 
 .PHONY: all
 all: $(OBJECTS)
+
+$(OBJECTS): %.o: %.h
+$(OBJECTS): %.o: %.cpp
+	g++ $(CPPFLAGS) -I. -MF"$*.d" -MT"$*.d" -o $@ $<
 
 .PHONY: clean
 clean:
