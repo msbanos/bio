@@ -6,7 +6,7 @@ INSTALL_DIR = bin/$(VERSION)
 TEST_DIR = tests
 
 OBJECTS = $(ROOT_DIR)/io/FileReader.o $(ROOT_DIR)/bio/SequenceRecord.o $(ROOT_DIR)/bio/io/FastaReader.o \
-	$(ROOT_DIR)/io/FileWriter.o $(ROOT_DIR)/bio/io/FastaWriter.o
+	$(ROOT_DIR)/io/FileWriter.o $(ROOT_DIR)/bio/io/FastaWriter.o $(ROOT_DIR)/io/BasicFileReader.o
 
 .PHONY: all
 all: $(OBJECTS)
@@ -28,7 +28,8 @@ install:
 	find . -type f -name '*.o' -not -path "./bin/*" -exec cp --parents {} $(INSTALL_DIR) \;
 	find . -type f -name '*.h' -not -path "./bin/*" -exec cp --parents {} $(INSTALL_DIR) \;
 
-TESTS = $(TEST_DIR)/bio/SequenceRecord_test $(TEST_DIR)/bio/io/FastaReader_test $(TEST_DIR)/bio/io/FastaWriter_test
+TESTS = $(TEST_DIR)/bio/SequenceRecord_test $(TEST_DIR)/bio/io/FastaReader_test $(TEST_DIR)/bio/io/FastaWriter_test \
+	$(TEST_DIR)/io/BasicFileReader_test
 
 $(TESTS): %: %.cpp
 test: $(TESTS)
@@ -49,3 +50,6 @@ FASTA_WRITER_TEST_DEPS = $(ROOT_DIR)/bio/SequenceRecord.o $(ROOT_DIR)/io/FileRea
 $(TEST_DIR)/bio/io/FastaWriter_test: $(FASTA_WRITER_TEST_DEPS)
 	g++ $(TESTFLAGS) -I. $(FASTA_WRITER_TEST_DEPS) -o $@ -lboost_unit_test_framework $@.cpp
 
+BASIC_FILE_READER_TEST_DEPS = $(ROOT_DIR)/io/FileReader.o $(ROOT_DIR)/io/BasicFileReader.o
+$(TEST_DIR)/io/BasicFileReader_test: $(BASIC_FILE_READER_TEST_DEPS)
+	g++ $(TESTFLAGS) -I. $(BASIC_FILE_READER_TEST_DEPS) -o $@ -lboost_unit_test_framework $@.cpp
