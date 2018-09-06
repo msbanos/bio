@@ -5,7 +5,8 @@ ROOT_DIR = banos/ms/core
 INSTALL_DIR = bin/$(VERSION)
 TEST_DIR = tests
 
-OBJECTS = $(ROOT_DIR)/io/FileReader.o $(ROOT_DIR)/bio/SequenceRecord.o $(ROOT_DIR)/bio/io/FastaReader.o
+OBJECTS = $(ROOT_DIR)/io/FileReader.o $(ROOT_DIR)/bio/SequenceRecord.o $(ROOT_DIR)/bio/io/FastaReader.o \
+	$(ROOT_DIR)/io/FileWriter.o
 
 .PHONY: all
 all: $(OBJECTS)
