@@ -54,7 +54,6 @@ protected:
 	 */
 	virtual T* makeRecord() = 0;
 
-private:
 	std::string id, sequence, qualities, comment;
 };
 
