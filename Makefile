@@ -6,7 +6,8 @@ INSTALL_DIR = bin/$(VERSION)
 TEST_DIR = tests
 
 OBJECTS = $(ROOT_DIR)/io/FileReader.o $(ROOT_DIR)/bio/SequenceRecord.o $(ROOT_DIR)/bio/io/FastaReader.o \
-	$(ROOT_DIR)/io/FileWriter.o $(ROOT_DIR)/bio/io/FastaWriter.o $(ROOT_DIR)/io/BasicFileReader.o
+	$(ROOT_DIR)/io/FileWriter.o $(ROOT_DIR)/bio/io/FastaWriter.o $(ROOT_DIR)/io/BasicFileReader.o \
+	$(ROOT_DIR)/io/BasicFileWriter.o
 
 .PHONY: all
 all: $(OBJECTS)
