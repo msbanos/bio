@@ -9,7 +9,7 @@ OBJECTS = $(ROOT_DIR)/io/FileReader.o $(ROOT_DIR)/bio/SequenceRecord.o $(ROOT_DI
 	$(ROOT_DIR)/io/FileWriter.o $(ROOT_DIR)/bio/io/FastaWriter.o $(ROOT_DIR)/io/BasicFileReader.o \
 	$(ROOT_DIR)/io/BasicFileWriter.o $(ROOT_DIR)/bio/io/FastqReaderBase.o $(ROOT_DIR)/bio/io/FastqReader.o \
 	$(ROOT_DIR)/bio/io/FastqWriter.o $(ROOT_DIR)/utils/string.o $(ROOT_DIR)/search/astar.o \
-	$(ROOT_DIR)/bio/align/PairwiseAlignment.o
+	$(ROOT_DIR)/bio/align/PairwiseAlignment.o $(ROOT_DIR)/bio/align/PairwiseAligner.o
 
 .PHONY: all
 all: $(OBJECTS)
