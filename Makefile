@@ -8,7 +8,7 @@ TEST_DIR = tests
 OBJECTS = $(ROOT_DIR)/io/FileReader.o $(ROOT_DIR)/bio/SequenceRecord.o $(ROOT_DIR)/bio/io/FastaReader.o \
 	$(ROOT_DIR)/io/FileWriter.o $(ROOT_DIR)/bio/io/FastaWriter.o $(ROOT_DIR)/io/BasicFileReader.o \
 	$(ROOT_DIR)/io/BasicFileWriter.o $(ROOT_DIR)/bio/io/FastqReaderBase.o $(ROOT_DIR)/bio/io/FastqReader.o \
-	$(ROOT_DIR)/bio/io/FastqWriter.o
+	$(ROOT_DIR)/bio/io/FastqWriter.o $(ROOT_DIR)/utils/string.o
 
 .PHONY: all
 all: $(OBJECTS)
@@ -31,7 +31,8 @@ install:
 	find . -type f -name '*.h' -not -path "./bin/*" -exec cp --parents {} $(INSTALL_DIR) \;
 
 TESTS = $(TEST_DIR)/bio/SequenceRecord_test $(TEST_DIR)/bio/io/FastaReader_test $(TEST_DIR)/bio/io/FastaWriter_test \
-	$(TEST_DIR)/io/BasicFileReader_test $(TEST_DIR)/bio/io/FastqReader_test $(TEST_DIR)/bio/io/FastqWriter_test
+	$(TEST_DIR)/io/BasicFileReader_test $(TEST_DIR)/bio/io/FastqReader_test $(TEST_DIR)/bio/io/FastqWriter_test \
+	$(TEST_DIR)/utils/string_test
 
 $(TESTS): %: %.cpp
 test: $(TESTS)
@@ -64,3 +65,7 @@ FASTQ_WRITER_TEST_DEPS = $(ROOT_DIR)/bio/SequenceRecord.o $(ROOT_DIR)/io/FileRea
 	$(ROOT_DIR)/io/FileWriter.o $(ROOT_DIR)/bio/io/FastqWriter.o
 $(TEST_DIR)/bio/io/FastqWriter_test: $(FASTQ_WRITER_TEST_DEPS)
 	g++ $(TESTFLAGS) -I. $(FASTQ_WRITER_TEST_DEPS) -o $@ -lboost_unit_test_framework $@.cpp
+	
+STRING_UTILS_TEST_DEPS = $(ROOT_DIR)/utils/string.o
+$(TEST_DIR)/utils/string_test: $(STRING_UTILS_TEST_DEPS)
+	g++ $(TESTFLAGS) -I. $(STRING_UTILS_TEST_DEPS) -o $@ -lboost_unit_test_framework $@.cpp
