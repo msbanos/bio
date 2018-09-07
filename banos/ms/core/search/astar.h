@@ -86,9 +86,7 @@ protected:
 
 /**
  * Comparator class to use for state prioritization.
- * @type N The search node type.
  */
-template <class N>
 class __NodeComparator {
 public:
 	/**
@@ -96,9 +94,7 @@ public:
 	 * @param lhs A node to be compared.
 	 * @param rhs Another node to be compared.
 	 */
-	bool operator() (const N* lhs, const N* rhs) const {
-		return lhs->getFitness() > rhs->getFitness();
-	}
+	bool operator() (const Node* lhs, const Node* rhs) const;
 };
 
 
@@ -111,7 +107,7 @@ public:
  */
 template <class N>
 const N* search(const N* const start, const NodeGenerator<N>* const generator) {
-	std::priority_queue<const N*, std::vector<const N*>, __NodeComparator<N>> nodes;
+	std::priority_queue<const N*, std::vector<const N*>, __NodeComparator> nodes;
 	nodes.push(start);
 
 	std::unordered_set<const N*> next;

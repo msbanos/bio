@@ -17,6 +17,10 @@ Node::Node()  { }
 
 Node::~Node()  { }
 
+bool __NodeComparator::operator() (const Node* lhs, const Node* rhs) const {
+	return lhs->getFitness() > rhs->getFitness();
+}
+
 } /* namespace astar */
 } /* namespace search */
 } /* namespace core */
